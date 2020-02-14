@@ -10,7 +10,7 @@ const webpackCommonConfig = require('./webpack.base')
 module.exports = function(env){
     const plugins = [
         new MiniCss({
-            filename: 'static/css/app.[hash].css'
+            filename: '../stylesheets/app.css'
         }),
         new CleanWebpackPlugin(),
         new VueLoaderPlugin()

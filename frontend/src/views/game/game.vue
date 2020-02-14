@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>game</h1>
-    <button @click="newVue">myVUe</button>
+    <button @click="newVue" class="btn">myVUe</button>
     <component :is="cp"/>
     <component :is="cp"/>
     <component :is="cp"/>
@@ -111,6 +111,4 @@ export default {
 }
 </script>
 
-<style>
-
-</style>
+<style lang="scss" src="./game.scss"></style>

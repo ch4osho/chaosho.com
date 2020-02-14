@@ -63,7 +63,6 @@ function resolveHtmlTemplate(env){
     //     htmlPlugins.push(htmlPlugin)
     // })
 
-    // let path = env === 'dev' ? 'dist/index.html' : tplPath;
 
     var htmlPlugin = new HtmlWebpackPlugin({
         filename: env === 'dev' ? resolve('dist/index.html') : resolveToPublic(tplPath),
@@ -76,7 +75,7 @@ function resolveHtmlTemplate(env){
 function initConfig(env){
 
     // resolveAlias()
-    
+
     resolveEntryAndOutput(env)
 
     resolveHtmlTemplate(env)

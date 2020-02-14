@@ -6,7 +6,7 @@ const cssLoader = {
     test: /\.css$/,
     exclude: /node_modules/,
     use: [
-        // MiniCssExtraPlugin.loader,
+        MiniCssExtraPlugin.loader,
         'style-loader',
         'css-loader',
         // 'postcss-loader'
@@ -14,11 +14,11 @@ const cssLoader = {
 }
 
 const sassLoader = {
-    test: /\.scss$/,
+    test: /\.(sa|sc|c)ss$/,
     exclude: /node_modules/,
     use: [
         // MiniCssExtraPlugin.loader,
-        'style-loader',
+        // 'style-loader',
         'css-loader',
         // 'postcss-loader',
         'sass-loader',
@@ -68,29 +68,13 @@ const fileLoader = {
 
 const initLoader = function (env) {
     const loaders = []
-    // if (env !== "dev"){
-    //     cssLoader.use = [
-    //         {
-    //             loader: MiniCssExtraPlugin.loader
-    //         },
-    //         "css-loader"
-    //     ];
 
-    //     sassLoader.use = [
-    //         {
-    //             loader: MiniCssExtraPlugin.loader,
-    //         },
-    //         "css-loader",
-    //         "sass-loader",
-    //         {
-    //             loader: "sass-resource-loader",
-    //             options: {
-    //                 resources: resolve('src/sass/base.scss')
-    //             }
-    //         }
-    //     ]
-    // }
-    loaders.push(cssLoader,sassLoader,jsLoader,fileLoader,vueLoader)
+    env === 'dev' ? sassLoader.use.unshift('style-loader') : sassLoader.use.unshift(MiniCssExtraPlugin.loader)
+
+    // console.
+
+    loaders.push(sassLoader,jsLoader,fileLoader,vueLoader)
+
     return loaders
 }
 
