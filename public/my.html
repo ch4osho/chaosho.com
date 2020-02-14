@@ -9,4 +9,12 @@
     <h1>hello</h1>
     <h2>lolololol</h2>
 </body>
+<script>
+    const env = 'prod'
+    var config = {
+        name:''
+    }
+    env === 'dev' ? config.name = 'chaos' : config.name = 'tracy'
+    console.log(config.name)
+</script>
 </html>

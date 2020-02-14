@@ -4,7 +4,7 @@
   <button @click="destory">destory</button>
   <button @click="update">update</button>
   <h1>演示update：{{text}}</h1>
-  <h2 v-for="item in 10000" :key="item">{{item}}{{Math.random() * 100}}</h2>.
+  <h2 v-for="item in 10" :key="item">{{item}}{{Math.random() * 100}}</h2>.
 </div>
 </template>
 

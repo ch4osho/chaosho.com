@@ -4,8 +4,8 @@ const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const { resolve } = require('./bundle')
 const webpackBaseConfig = require('./webpack.base')
 
-module.exports = function(){
-    return merge(webpackBaseConfig(),{
+module.exports = function(env){
+    return merge(webpackBaseConfig(env),{
         mode: 'development',
         plugins: [
             new webpack.HotModuleReplacementPlugin(),

@@ -1,9 +1,16 @@
 const path = require('path')
 const fs = require('fs')
 
+const publicPath = "public/javascripts"
+const tplPath = "public/app.html"
+
 const resolve = (p) => path.resolve(__dirname, "..", p)
-const entryDir = resolve("src")
-const entryFiles = fs.readdirSync(entryDir)
+const resolveToPublic = (p) => path.resolve(__dirname, "../..", p)
+
+
+// 多页面入口
+// const entryDir = resolve("src")
+// const entryFiles = fs.readdirSync(entryDir)
 
 // html模板
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -21,6 +28,8 @@ function resolveAlias() {
 
 // 入口和出口
 function resolveEntryAndOutput(env) {
+
+    // 多页面入口
     // entryFiles.forEach(dir=>{
     //     entry[dir] = resolve(`${entryDir}/${dir}`);
     //     output = {
@@ -28,16 +37,22 @@ function resolveEntryAndOutput(env) {
     //         path: resolve('dist')
     //     }
     // })
+    // if (env === 'dev') output.path = resolve('dist')
+    //     else output.path = resolveToPublic('publicPath')
+
+    env === 'dev' ? output.path = resolve('dist') : output.path = resolveToPublic(publicPath)
+
     entry = resolve('src/main.js'),
-    output = {
-        filename: "index.js",
-        path: resolve('dist')
-    }
+
+    output.filename = "index.js"
+    
 
 }
 
 // html模板
-function resolveHtmlTemplate(){
+function resolveHtmlTemplate(env){
+
+    // 多页面打包
     // entryFiles.forEach(dir=>{
     //     console.log(dir,'每个dir')
     //     const htmlPlugin = new HtmlWebpackPlugin({
@@ -47,18 +62,24 @@ function resolveHtmlTemplate(){
     //     })
     //     htmlPlugins.push(htmlPlugin)
     // })
+
+    // let path = env === 'dev' ? 'dist/index.html' : tplPath;
+
     var htmlPlugin = new HtmlWebpackPlugin({
-        filename: resolve('dist/index.html'),
+        filename: env === 'dev' ? resolve('dist/index.html') : resolveToPublic(tplPath),
         template: resolve('template/template.html')
     })
     htmlPlugins.push(htmlPlugin)
+
 }
 
 function initConfig(env){
+
     // resolveAlias()
+    
     resolveEntryAndOutput(env)
 
-    resolveHtmlTemplate()
+    resolveHtmlTemplate(env)
 
     return {
         entry,

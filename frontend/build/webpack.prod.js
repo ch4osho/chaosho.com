@@ -1,6 +1,7 @@
 const merge = require("webpack-merge");
 const uglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const MiniCss = require('mini-css-extract-plugin')
+const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 
@@ -11,14 +12,15 @@ module.exports = function(env){
         new MiniCss({
             filename: 'static/css/app.[hash].css'
         }),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        new VueLoaderPlugin()
     ]
 
     return merge(webpackCommonConfig(env),{
         mode: 'production',
-        output: {
-            publicPath: '//chaosho.com'
-        },
+        // output: {
+        //     publicPath: '//chaosho.com'
+        // },
         optimization: {
             minimizer: [
                 new uglifyJsPlugin({
