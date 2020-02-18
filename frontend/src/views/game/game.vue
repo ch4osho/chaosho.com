@@ -1,5 +1,5 @@
 <template>
-  <!-- <div>
+  <div>
     <h1>game</h1>
     <button @click="newVue" class="btn">myVUe</button>
     <component :is="cp"/>
@@ -12,9 +12,6 @@
     <ul id="noDelegation">
       <li v-for="item in 5" :key="item" @click="noDelegation(item)">{{item}}{{Math.random() * 100}}</li>
     </ul>
-  </div> -->
-  <div>
-    <span v-for="item in 520" :key="item">陈佩纯</span>
   </div>
 </template>
 
