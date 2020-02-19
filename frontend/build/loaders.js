@@ -22,12 +22,12 @@ const sassLoader = {
         'css-loader',
         // 'postcss-loader',
         'sass-loader',
-        {
-            loader: 'sass-resources-loader',
-            options: {
-                resources: resolve('src/sass/base.scss')
-            }
-        }
+        // {
+        //     loader: 'sass-resources-loader',
+        //     options: {
+        //         resources: resolve('src/sass/base.scss')
+        //     }
+        // }
     ]
 }
 

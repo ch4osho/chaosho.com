@@ -53,6 +53,7 @@ export default {
 }
 </script>
 
+<style lang="scss" src="./sass/base.scss"></style>
 <style lang="scss">
     .nav{
         position: fixed;
