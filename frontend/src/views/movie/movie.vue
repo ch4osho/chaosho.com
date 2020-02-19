@@ -1,5 +1,5 @@
 <template>
-  <section id="game" style="width: 100%; height:100%">
+  <section id="game" class="full-section">
     <my-scroller>
       <div class="title">
         <p>自我评价</p>
@@ -7,6 +7,7 @@
       <ul id="noDelegation">
         <li v-for="item in 50" :key="item" @click="noDelegation(item)">{{item}}:{{Math.random() * 100}}</li>
       </ul>
+      <div class="site-block"></div>
     </my-scroller>
   </section>
 </template>

@@ -69,7 +69,7 @@
     // overflow:hidden;
 }
 ._v-content {
-    overflow: hidden;
+    // overflow: hidden;
     min-height: 100%;
     &:before {
         content: '';

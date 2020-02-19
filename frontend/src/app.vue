@@ -1,6 +1,6 @@
 <template>
-    <section class="app-wrap">
-        <div class="nav">
+    <section class="full-section">
+        <div class="nav" v-if="needPas">
             <div class="bar">
                 <div v-for="item in routerList" :key="item.name" class="bar-item" @click="changeView(item.name)">
                     {{item.label}}
@@ -13,10 +13,12 @@
         <!-- <keep-alive>
             <router-view></router-view>
         </keep-alive> -->
+
+        <popup v-else @enterPassword="enterPassword"></popup>
+
         <div class="view">
             <router-view></router-view>
         </div>
-    <!-- <popup></popup> -->
     </section>
 </template>
 
@@ -25,6 +27,7 @@ import Popup from './components/global/popup.vue'
 export default {
     data: function (){
         return {
+            needPas: false,
             routerList: [{
                 name: 'game',
                 label: '我'
@@ -48,6 +51,9 @@ export default {
             this.$router.push({
                 name: name
             })
+        },
+        enterPassword(){
+            this.needPas = true
         }
     }
 }
