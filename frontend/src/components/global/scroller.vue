@@ -65,6 +65,7 @@
 <style lang="scss">
 ._v-container{
     height: calc(100% - 2.15rem) !important;
+    margin-bottom: 4rem;
     // overflow:hidden;
 }
 ._v-content {

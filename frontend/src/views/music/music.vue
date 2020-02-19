@@ -2,7 +2,7 @@
   <section id="game" style="width: 100%; height:100%">
     <my-scroller :refresh="getIndexInfo" @scroll="onScroll">
       <div class="title">
-        <h1>工作经历</h1>
+        <p>工作经历</p>
       </div>
       <ul id="noDelegation">
         <li v-for="item in 50" :key="item" @click="noDelegation(item)">{{item}}:{{Math.random() * 100}}</li>
