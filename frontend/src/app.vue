@@ -27,7 +27,7 @@ import Popup from './components/global/popup.vue'
 export default {
     data: function (){
         return {
-            needPas: false,
+            needPas: true,
             routerList: [{
                 name: 'game',
                 label: '我'
