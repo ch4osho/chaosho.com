@@ -5,7 +5,7 @@
         <h1>我</h1>
       </div>
       <ul id="noDelegation">
-        <li v-for="item in 30" :key="item" @click="noDelegation(item)">{{item}}{{Math.random() * 100}}</li>
+        <li v-for="item in 50" :key="item" @click="noDelegation(item)">{{item}}{{Math.random() * 100}}</li>
       </ul>
     </my-scroller>
   </section>
