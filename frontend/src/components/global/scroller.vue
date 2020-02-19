@@ -63,16 +63,12 @@
 </script>
 
 <style lang="scss">
-.page-wrapper.full ._v-container {
-    height: 100% !important;
-}
-
 ._v-container{
-    // height: calc(100% - 2.15rem) !important;
+    height: calc(100% - 2.15rem) !important;
     // overflow:hidden;
 }
 ._v-content {
-    // overflow: hidden;
+    overflow: hidden;
     min-height: 100%;
     &:before {
         content: '';

@@ -1,5 +1,5 @@
 <template>
-  <section id="game">
+  <section id="game" style="width: 100%; height:100%">
     <my-scroller :refresh="getIndexInfo" @scroll="onScroll">
       <div class="title">
         <h1>我</h1>

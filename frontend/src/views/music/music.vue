@@ -1,11 +1,11 @@
 <template>
-  <section id="game">
+  <section id="game" style="width: 100%; height:100%">
     <my-scroller :refresh="getIndexInfo" @scroll="onScroll">
       <div class="title">
         <h1>工作经历</h1>
       </div>
       <ul id="noDelegation">
-        <li v-for="item in 50" :key="item" @click="noDelegation(item)">{{item}}{{Math.random() * 100}}</li>
+        <li v-for="item in 50" :key="item" @click="noDelegation(item)">{{item}}:{{Math.random() * 100}}</li>
       </ul>
     </my-scroller>
   </section>
