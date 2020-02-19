@@ -1,57 +1,55 @@
 <template>
-<div>
-  <h1>mine</h1>
-  <button @click="destory">destory</button>
-  <button @click="update">update</button>
-  <h1>演示update：{{text}}</h1>
-  <h2 v-for="item in 10" :key="item">{{item}}{{Math.random() * 100}}</h2>.
-</div>
+  <section id="game">
+    <my-scroller>
+      <div class="title">
+        <h1>更多</h1>
+      </div>
+      <ul id="noDelegation">
+        <li v-for="item in 30" :key="item" @click="noDelegation(item)">{{item}}{{Math.random() * 100}}</li>
+      </ul>
+    </my-scroller>
+  </section>
 </template>
 
 <script>
+import MyScroller from '@components/global/scroller.vue'
+import Mock from 'mockjs'
 export default {
   data: function(){
     return {
-      text: '这是测试的字符串'
+      number: 0,
+      cp: 'cp'
     }
   },
-  methods: {
-    destory(){
-      this.$destroy()
+  components: {
+    MyScroller
+  },
+  methods:{
+    getIndexInfo(e){
+      e()
+      console.log(1)
     },
-    update(){
-      this.text += '呀'
+    onScroll(){
+      console.log(2)
+    },
+    noDelegation(e){
+      console.log(e)
     }
-  },
-  beforeCreate(){
-    console.log('1 -----> mine ----> beforeCreate')
   },
   created(){
-    console.log('2 -----> mine ----> created')
   },
-  beforeMount(){
-    console.log('3 -----> mine ----> beforeMount')
-  },
+
   mounted(){
-    console.log('4 -----> mine ----> mounted')
+    var data = Mock.mock({
+      'list|4': [{
+        'id|+1': 1,
+        name: Mock.Random.cname()
+      }]
+    })
+
+    console.log(data)
   },
-  beforeDestroy(){
-    console.log('5 -----> mine ----> beforeDestory')
-  },
-  updated(){
-    console.log('7 -----> mine ----> updated')
-  },
-  destroyed(){
-    console.log('6 -----> mine ----> destroyed')
-  },
-  // beforeRouteLeave(to, from, next){
-  //   console.log('beforeRouteLeave')
-  //   this.$destroy()
-  //   next()
-  // }
 }
 </script>
 
-<style>
-
-</style>
+<style lang="scss" src="./mine.scss"></style>

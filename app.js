@@ -21,8 +21,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/static',express.static(path.join(__dirname, 'public'),{
-  maxAge: 360000,
-  etag: false
+  maxAge: 600000,
+  // etag: false
 }))
 
 

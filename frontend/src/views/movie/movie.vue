@@ -1,41 +1,56 @@
 <template>
-<div>
-  <h1>movie</h1>
-  <h2 v-for="item in 10" :key="item">{{item}}{{Math.random() * 100}}</h2>
-</div>
+  <section id="game">
+    <my-scroller>
+      <div class="title">
+        <h1>自我评价</h1>
+      </div>
+      <ul id="noDelegation">
+        <li v-for="item in 30" :key="item" @click="noDelegation(item)">{{item}}{{Math.random() * 100}}</li>
+      </ul>
+    </my-scroller>
+  </section>
 </template>
 
 <script>
+import MyScroller from '@components/global/scroller.vue'
+import Mock from 'mockjs'
 export default {
-  beforeCreate(){
-    console.log('1 -----> movie ----> beforeCreate')
+  data: function(){
+    return {
+      number: 0,
+      cp: 'cp'
+    }
+  },
+  components: {
+    MyScroller
+  },
+  methods:{
+    getIndexInfo(e){
+      e()
+      console.log(1)
+    },
+    onScroll(){
+      console.log(2)
+    },
+    noDelegation(e){
+      console.log(e)
+    }
   },
   created(){
-    console.log('2 -----> movie ----> created')
   },
-  beforeMount(){
-    console.log('3 -----> movie ----> beforeMount')
-  },
+
   mounted(){
-    console.log('4 -----> movie ----> mounted')
+    var data = Mock.mock({
+      'list|4': [{
+        'id|+1': 1,
+        name: Mock.Random.cname()
+      }]
+    })
+
+    console.log(data)
   },
-  beforeDestroy(){
-    console.log('5 -----> movie ----> beforeDestory')
-  },
-  updated(){
-    console.log('7 -----> movie ----> updated')
-  },
-  destroyed(){
-    console.log('6 -----> movie ----> destroyed')
-  },
-  // beforeRouteLeave(to, from, next){
-  //   console.log('beforeRouteLeave')
-  //   this.$destroy()
-  //   next()
-  // }
 }
 </script>
-
 <style>
 
 </style>

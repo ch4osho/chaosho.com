@@ -15,10 +15,10 @@ Vue.use(VueRouter)
 export default new VueRouter({
     mode: 'hash',
     routes: [
-        { path: '/', component: game, name: 'game'},
-        { path: '/music', component: music, name: 'music'},
-        { path: '/movie', component: movie, name: 'movie'},
-        { path: '/mine', component: mine, name: 'mine'},
+        { path: '/', component: game, name: 'game', meta: {index: 1}},
+        { path: '/music', component: music, name: 'music', meta: {index: 2}},
+        { path: '/movie', component: movie, name: 'movie', meta: {index: 3}},
+        { path: '/mine', component: mine, name: 'mine', meta: {index: 4}},
 
     ]
 })
