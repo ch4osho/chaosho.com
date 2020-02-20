@@ -1,5 +1,5 @@
 <template>
-    <scroller ref="scroller" :style="{ 'padding-top': padding}" :on-refresh="refresh" :on-infinite="infinite" :noDataText="noDataText"
+    <scroller ref="scroller" :on-refresh="refresh" :on-infinite="infinite" :noDataText="noDataText"
         :refreshLayerColor="textColor" :loadingLayerColor="textColor" :on-scroll="onScroll" >
         <slot></slot>
     </scroller>
@@ -64,18 +64,16 @@
 
 <style lang="scss">
 ._v-container{
-    height: calc(100% - 2.15rem) !important;
-    margin-bottom: 4rem;
-    // overflow:hidden;
+    // height: calc(100% - 2.15rem) !important;
+    position: relative !important
 }
-._v-content {
-    // overflow: hidden;
-    min-height: 100%;
-    &:before {
-        content: '';
-        height: 0;
-    }
-}
+// ._v-content {
+//     // min-height: 100%;
+//     &:before {
+//         content: '';
+//         height: 0;
+//     }
+// }
 
 .no-data-text{
     font-size: .5rem;

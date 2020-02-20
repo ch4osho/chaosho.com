@@ -1,14 +1,19 @@
 <template>
   <section id="game" class="full-section">
-    <my-scroller :refresh="getIndexInfo" @scroll="onScroll">
+    <my-scroller :refresh="getIndexInfo" @scroll="onScroll" :infinite="infinite">
       <div class="title">
         <p>我</p>
       </div>
       <ul id="noDelegation">
         <li v-for="item in 50" :key="item" @click="noDelegation(item)">{{item}}{{Math.random() * 100}}</li>
       </ul>
-      <div class="site-block"></div>
+      <footer class="ipc">
+        互联网ICP备案：<a href="http://www.beian.miit.gov.cn">粤ICP备19076464号-1</a>
+    </footer>
     </my-scroller>
+    <!-- <footer class="ipc">
+        互联网ICP备案：<a href="http://www.beian.miit.gov.cn">粤ICP备19076464号-1</a>
+    </footer> -->
   </section>
 </template>
 
@@ -34,6 +39,11 @@ export default {
     },
     noDelegation(e){
       console.log(e)
+    },
+    infinite(e){
+      // console.log(e)
+      e()
+      // console.log(444)
     }
   },
   created(){

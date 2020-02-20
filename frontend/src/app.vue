@@ -1,25 +1,28 @@
 <template>
-    <section class="full-section">
-        <div class="nav" v-if="needPas">
-            <div class="bar">
-                <div v-for="item in routerList" :key="item.name" class="bar-item" @click="changeView(item.name)">
-                    {{item.label}}
+    <div class="full-section" id="chaos">
+        <div class="full-section" v-show="passwordRight">
+
+            <!-- 顶部导航栏 -->
+            <div class="nav">
+                <div class="bar">
+                    <div v-for="item in routerList" :key="item.name" class="bar-item" @click="changeView(item.name)">
+                        {{item.label}}
+                    </div>
                 </div>
+                <div class="move-bar" :style="{'left': (2 * this.$route.meta.index - 1) * 12.5 + '%'}"></div>
             </div>
-            
-            <div class="move-bar" :style="{'left': (2 * this.$route.meta.index - 1) * 12.5 + '%'}"></div>
+
+            <!-- 渲染区域 -->
+            <div class="view">
+                <keep-alive>
+                    <router-view></router-view>
+                </keep-alive>
+            </div>
         </div>
 
-        <!-- <keep-alive>
-            <router-view></router-view>
-        </keep-alive> -->
 
-        <popup v-else @enterPassword="enterPassword"></popup>
-
-        <div class="view">
-            <router-view></router-view>
-        </div>
-    </section>
+        <popup v-show="!passwordRight" @enterPassword="enterPassword"></popup>
+    </div>
 </template>
 
 <script>
@@ -27,7 +30,8 @@ import Popup from './components/global/popup.vue'
 export default {
     data: function (){
         return {
-            needPas: true,
+            // needPas: false,
+            passwordRight: false,
             routerList: [{
                 name: 'game',
                 label: '我'
@@ -53,7 +57,7 @@ export default {
             })
         },
         enterPassword(){
-            this.needPas = true
+            this.passwordRight = true
         }
     }
 }
@@ -66,6 +70,7 @@ export default {
         top: 0;
         left: 0;
         background: white;
+        z-index: 999;
         .bar{
             width: 100vw;
             height: 2rem;
@@ -93,7 +98,12 @@ export default {
     }
 
     .view{
-        margin-top: 2.15rem;
+        overflow: hidden;
+        position: fixed;
+        width: 100%;
+        // margin-top: 2.15rem;
+        left: 0;
+        top: 2.15rem;
         height: calc(100% - 2.15rem);
     }
 </style>

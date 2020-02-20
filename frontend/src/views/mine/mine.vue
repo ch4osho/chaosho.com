@@ -7,7 +7,6 @@
       <ul id="noDelegation">
         <li v-for="item in 50" :key="item" @click="noDelegation(item)">{{item}}:{{Math.random() * 100}}</li>
       </ul>
-      <div class="site-block"></div>
     </my-scroller>
   </section>
 </template>

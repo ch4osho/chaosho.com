@@ -1,7 +1,7 @@
 <template>
     <section id="popup" class="mask">
         <div class="popup">
-            <input type="text" placeholder="输入密码" v-model="password">
+            <input type="text" placeholder="输入密码" v-model="password" class="input">
             <span class="warm">{{warm}}</span>
         </div>
     </section>
@@ -21,7 +21,7 @@ export default {
     },
     watch: {
         password: function(){
-            if(this.password != 5284792) {
+            if(this.password != 1) {
                 this.warm = '错误'
             } else {
                 this.warm = '正确'
@@ -35,14 +35,11 @@ export default {
 
 <style lang="scss">
     .mask{
-        width: 100%;
-        height: 100%;
+        width: 100vw;
+        height: 100vh;
         background: #ededed;
         position: fixed;
-        top: 0;
-        left: 0;
         z-index: 100;
-        display: block;
 
         .popup{
             position: absolute;
