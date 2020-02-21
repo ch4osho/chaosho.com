@@ -1,19 +1,17 @@
 <template>
-  <section id="game" class="full-section">
+  <section id="exp" class="full-section">
     <my-scroller :refresh="getIndexInfo" @scroll="onScroll" :infinite="infinite">
-      <div class="title">
-        <p>我</p>
+      <div class="contanier">
+        <div class="card">
+          <p class="title">工作经历</p>
+        </div>
+        <div class="card">
+          <ul id="noDelegation">
+            <li v-for="item in 50" :key="item" @click="noDelegation(item)">{{item}}:{{Math.random() * 100}}</li>
+          </ul>
+        </div>
       </div>
-      <ul id="noDelegation">
-        <li v-for="item in 50" :key="item" @click="noDelegation(item)">{{item}}{{Math.random() * 100}}</li>
-      </ul>
-      <footer class="ipc">
-        互联网ICP备案：<a href="http://www.beian.miit.gov.cn">粤ICP备19076464号-1</a>
-    </footer>
     </my-scroller>
-    <!-- <footer class="ipc">
-        互联网ICP备案：<a href="http://www.beian.miit.gov.cn">粤ICP备19076464号-1</a>
-    </footer> -->
   </section>
 </template>
 
@@ -24,6 +22,7 @@ export default {
   data: function(){
     return {
       number: 0,
+      cp: 'cp'
     }
   },
   components: {
@@ -42,7 +41,7 @@ export default {
     },
     infinite(e){
       // console.log(e)
-      e()
+      e(true)
       // console.log(444)
     }
   },
@@ -62,4 +61,5 @@ export default {
 }
 </script>
 
-<style lang="scss" src="./game.scss"></style>
+
+<style lang="scss" src="./exp.scss" scoped></style>

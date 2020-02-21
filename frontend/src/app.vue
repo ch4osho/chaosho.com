@@ -33,16 +33,16 @@ export default {
             // needPas: false,
             passwordRight: false,
             routerList: [{
-                name: 'game',
+                name: 'index',
                 label: '我'
             },{
-                name: 'music',
+                name: 'exp',
                 label: '工作经历'
             },{
-                name: 'movie',
+                name: 'appraisal',
                 label: '自我评价'
             },{
-                name: 'mine',
+                name: 'more',
                 label: '更多'
             }]
         }
@@ -104,6 +104,7 @@ export default {
         // margin-top: 2.15rem;
         left: 0;
         top: 2.15rem;
+        background: #ededed;
         height: calc(100% - 2.15rem);
     }
 </style>

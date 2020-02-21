@@ -1,12 +1,16 @@
 <template>
-  <section id="game" class="full-section">
-    <my-scroller :refresh="getIndexInfo" @scroll="onScroll">
-      <div class="title">
-        <p>工作经历</p>
+  <section id="appraisal" class="full-section">
+    <my-scroller :infinite="infinite">
+      <div class="contanier">
+        <div class="card">
+          <p class="title">自我评价</p>
+        </div>
+        <div class="card">
+          <ul id="noDelegation">
+            <li v-for="item in 50" :key="item" @click="noDelegation(item)">{{item}}:{{Math.random() * 100}}</li>
+          </ul>
+        </div>
       </div>
-      <ul id="noDelegation">
-        <li v-for="item in 50" :key="item" @click="noDelegation(item)">{{item}}:{{Math.random() * 100}}</li>
-      </ul>
     </my-scroller>
   </section>
 </template>
@@ -34,6 +38,11 @@ export default {
     },
     noDelegation(e){
       console.log(e)
+    },
+    infinite(e){
+      // console.log(e)
+      e(true)
+      // console.log(444)
     }
   },
   created(){
@@ -51,6 +60,4 @@ export default {
   },
 }
 </script>
-<style>
-
-</style>
+<style lang="scss" src="./appraisal.scss" scoped></style>

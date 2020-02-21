@@ -1,12 +1,16 @@
 <template>
-  <section id="game" class="full-section">
+  <section id="more" class="full-section">
     <my-scroller>
-      <div class="title">
-        <p>更多</p>
+      <div class="contanier">
+        <div class="card">
+          <p class="title">更多</p>
+        </div>
+        <div class="card">
+          <ul id="noDelegation">
+            <li v-for="item in 50" :key="item" @click="noDelegation(item)">{{item}}:{{Math.random() * 100}}</li>
+          </ul>
+        </div>
       </div>
-      <ul id="noDelegation">
-        <li v-for="item in 50" :key="item" @click="noDelegation(item)">{{item}}:{{Math.random() * 100}}</li>
-      </ul>
     </my-scroller>
   </section>
 </template>
@@ -52,4 +56,4 @@ export default {
 }
 </script>
 
-<style lang="scss" src="./mine.scss"></style>
+<style lang="scss" src="./more.scss" scoped></style>
