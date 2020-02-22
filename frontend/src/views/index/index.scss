@@ -2,10 +2,128 @@
     padding: 10px;
 
     .card{
+        transition: height .5s linear;
         margin-bottom: .5rem;
         background: white;
-        border-radius: .5rem;
+        border-radius: .5rem 0 .5rem .5rem;
         padding: .75rem;
+        position: relative;
+        overflow: hidden;
+
+        &.flex{
+            display: flex;
+        }
+        
+        .qrcode{
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            width: 2rem;
+            height: 2rem;
+            background-color: blue;
+            background: url('./../../sass/myqrcode.png');
+            background-size: 2rem 2rem
+        }
+
+
+        .avator{
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 1px solid #ededed;
+            img{
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .des{
+            margin-left: 1rem;
+            flex: 1;
+
+            .name-container{
+                position: relative;
+                line-height: 1.4rem;
+                font-size: 1.4rem;
+                width: 5rem;
+                height: 1.4rem;
+                overflow: hidden;
+
+                .name-content{
+                    display: flex;
+                    width: 10rem;
+                    height: 1.4rem;
+                    transition: transform .25s ease-in-out;
+                    .switch{
+                        width: 5rem;
+                        height: 1.4rem;
+                    }
+                }
+
+            }
+            .less-des{
+                margin: .75rem 0;
+                font-size: .7rem;
+                color: #666666
+            }
+
+            .animation{
+                margin-top: .5rem;
+                display: flex;
+                justify-content: center;
+                position: relative;
+                animation:  beat .5s infinite;
+            }
+
+            .moreInfo{
+
+                .item{
+                    margin-bottom: .25rem;
+                    font-size: .65rem;
+                    .label{
+                        font-size: .75rem;
+                        color: #666
+                    }
+
+                    .smaller{
+                        font-size: .5rem;
+                    }
+
+                }
+
+                .tagBox{
+                    display: flex;
+                    flex-wrap: wrap;
+                    margin-top: .5rem;
+                    .tag{
+                        border: 1px solid black;
+                        margin-right: .35rem;
+                        margin-bottom: .35rem;
+                        font-size: .35rem;
+                        border-radius: .35rem;
+                        padding: .2rem;
+                    }
+
+                    &::before{
+                        content: '标签:  ';
+                        font-size: .75rem;
+                        color: #666;
+                        line-height: 1.6rem;
+                        margin-right: .25rem;
+                    }
+                }
+            }
+
+            @keyframes beat {
+                from {
+                    top:0px
+                }
+                to{
+                    top: 10px
+                }
+            }
+        }
 
 
         .title{

@@ -1,13 +1,13 @@
 <template>
     <scroller ref="scroller" :on-refresh="refresh" :on-infinite="infinite" :noDataText="noDataText"
-        :refreshLayerColor="textColor" :loadingLayerColor="textColor" :on-scroll="onScroll" >
+        :refreshLayerColor="textColor" :loadingLayerColor="textColor" :on-scroll="onScroll">
         <slot></slot>
     </scroller>
 </template>
 
 <script>
     export default {
-        name: 'RastarScroller',
+        name: 'myScroller',
         data: function () {
             return {
                 scrollTop: 0,

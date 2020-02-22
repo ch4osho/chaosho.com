@@ -34,7 +34,7 @@ export default {
       console.log(1)
     },
     onScroll(){
-      console.log(2)
+      // console.log(2)
     },
     noDelegation(e){
       console.log(e)
