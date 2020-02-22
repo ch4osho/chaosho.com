@@ -50,7 +50,7 @@ export default {
         return {
             password: '',
             warm: '猜一下',
-            passwordRight: true,
+            passwordRight: false,
             qrcodeUrl: 'http://chaosho.com/static/images/qrcode.png',
             routerList: [{
                 name: 'index',
@@ -74,7 +74,7 @@ export default {
     },
     watch: {
         password: function(){
-            if(this.password != 1) {
+            if(this.password != 5284792) {
                 this.warm = '错误'
             } else {
                 this.warm = '正确'

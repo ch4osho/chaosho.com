@@ -60,10 +60,11 @@ const vueLoader = {
 
 const fileLoader = {
     // 文字资源
-    test: /\.(woff|woff2|eot|ttf|otf|csv|tsv|png|svg|jpg|gif)$/,
-    use: [
-        'file-loader'
-    ]
+    test: /\.(png|svg|jpg|jpeg|gif)$/,
+    loader: 'url-loader',
+    options: {
+        limit: 10000
+    }
 }
 
 const initLoader = function (env) {
