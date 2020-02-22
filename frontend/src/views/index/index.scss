@@ -39,7 +39,8 @@
         }
 
         .des{
-            margin-left: 1rem;
+            margin-left: 1.5rem;
+            margin-top: 1rem;
             flex: 1;
 
             .name-container{
@@ -125,9 +126,27 @@
             }
         }
 
+        ul.comment{
+            padding-left: 20px;
+            margin: 0;
+            .comment-item{
+                margin-bottom: .5rem;
+                color: #666;
+                font-size: .5rem;
+
+                .high-light{
+                    color: #c23531;
+                    margin: 0 .25rem;
+                    font-size: .75rem;
+                }
+            }
+        }
+
 
         .title{
-            margin: 0;
+            margin-bottom: .5rem;
+            font-size: 1.1rem;
+            font-weight: bold;
         }
     }
 }

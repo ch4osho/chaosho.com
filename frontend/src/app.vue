@@ -21,6 +21,7 @@
         </div>
 
 
+        <!-- 输入密码框 -->
         <popup v-if="!passwordRight">
             <template #header>
                 <span>确认身份</span>
@@ -31,6 +32,7 @@
             </template>
         </popup>
 
+        <!-- 二维码框 -->
         <popup v-if="showQrcode" :showClose="true" @close="closeQrcode">
             <template #header>
                 <span>交个朋友，微信识别二维码吧(*^▽^*)</span>
@@ -50,7 +52,7 @@ export default {
         return {
             password: '',
             warm: '猜一下',
-            passwordRight: false,
+            passwordRight: true,
             qrcodeUrl: 'http://chaosho.com/static/images/qrcode.png',
             routerList: [{
                 name: 'index',
@@ -74,7 +76,7 @@ export default {
     },
     watch: {
         password: function(){
-            if(this.password != 5284792) {
+            if(this.password != 111) {
                 this.warm = '错误'
             } else {
                 this.warm = '正确'
@@ -156,7 +158,7 @@ export default {
         .move-bar{
             width: 2rem;
             height: .15rem;
-            background: black;
+            background: #c23531;
             position: relative;
             left: 12.5%;
             transform: translateX(-50%);

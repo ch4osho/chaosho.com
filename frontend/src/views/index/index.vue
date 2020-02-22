@@ -48,6 +48,12 @@
             </div>
           </div>
         </div>
+        <div class="card">
+          <div class="title">专业技能</div>
+          <ul class="comment">
+            <li v-for="(comment,i) in commentList" :key="i" class="comment-item" v-html="comment"></li>
+          </ul>
+        </div>
         <skill></skill>
       </div>
       <icp-footer></icp-footer>
@@ -119,14 +125,25 @@ export default {
         years: 22,
         github: 'github.com/ch4osho/myWebRoad',
         avatorUrl: 'http://www.chaosho.com/static/images/cat.jpeg',
-        tagsList: ['幽默','探险','钻研','音乐','电影','有责任心','王者荣耀','LOL','97后','果粉','爱女友','热爱前端，向往全栈'],
+        tagsList: ['刻苦','探险','钻研','音乐','电影','有责任心','王者荣耀','LOL','97后','果粉','爱女友','热爱前端，向往全栈'],
         birthday: '1997/11/25',
         tel: '15626258839',
         email: '1414249719@qq.com'
-      }
+      },
+      commentList: [
+        '英语<span class="high-light">CET-4</span>证书，良好的英文读写能力，能够流利阅读国内外英文API文档',
+        '熟悉<span class="high-light">JavaScript</span>面向对象编程,<span class="high-light">HTML5</span>, <span class="high-light">CSS3</span>，DOM标准, AJAX，ES6，熟悉前端模块化思想；',
+        '掌握前端主流框架：<span class="high-light">Vue.js</span>，<span class="high-light">React.js</span>，<span class="high-light">jquery.js</span>，element-ui，antd，jquery；',
+        '熟悉<span class="high-light">git</span>项目版本管理，熟悉<span class="high-light">webpack</span>、<span class="high-light">gulp</span>等前端自动化构建工具；',
+        '熟悉<span class="high-light">Web性能优化</span>方案，有实际的性能优化经验；有<span class="high-light">移动端开发</span>经验，调试经验，能快速定位问题所在',
+        '熟悉css预处理语言 <span class="high-light">sass</span>,<span class="high-light">less</span>；了解<span class="high-light">Typescript</span>编程语言；',
+        '能够熟练的使用<span class="high-light">npm</span>包管理工具，快速学习上手网上出色的开源项目',
+        '能面对不同的调试环境采取各种<span class="high-light">调试工具</span>进行调试，<span class="high-light">charles抓包网络代理</span>、android logcat日志抓取、chrome dev tools调试工具等；',
+        '了解<span class="high-light">NodeJs</span>、<span class="high-light">php</span>、<span class="high-light">python</span>基本用法，可以书写php简单借口，能用python做基本的数据爬虫；'
+      ]
     }
   }
 }
 </script>
 
-<style lang="scss" src="./index.scss" scoped></style>
+<style lang="scss" src="./index.scss"></style>

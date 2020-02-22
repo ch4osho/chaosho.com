@@ -6,6 +6,9 @@
         <div class="card">
             <div style="height: 300px" ref="frame"></div>
         </div>
+        <div class="card">
+            <div style="height: 300px" ref="frontednTools"></div>
+        </div>
     </div>
 </template>
 
@@ -54,11 +57,30 @@ export default {
                 ]}
                 ]
             })
+        },
+        drawFrontendTools(){
+            let tools = this.$echarts.init(this.$refs['frontednTools'])
+            tools.setOption({
+                title: { text: '前端工具熟练度' },
+                series : [{
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: '55%',
+                    data:[
+                        {value:500, name:'webpack'},
+                        {value:274, name:'npm'},
+                        {value:310, name:'gulp'},
+                        {value:335, name:'git'},
+                        {value:40, name:'ps'}
+                ]}
+                ]
+            })
         }
     },
     mounted(){
         this.drawFrontendCharts()
         this.drawFrame()
+        this.drawFrontendTools()
     }
 }
 </script>
