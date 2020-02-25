@@ -45,9 +45,8 @@ export default {
             frame.setOption({
                 title: { text: '前端框架熟练度' },
                 series : [{
-                    name: '访问来源',
                     type: 'pie',
-                    radius: '55%',
+                    radius: '60%',
                     data:[
                         {value:500, name:'Vue'},
                         {value:274, name:'React'},
@@ -62,18 +61,27 @@ export default {
             let tools = this.$echarts.init(this.$refs['frontednTools'])
             tools.setOption({
                 title: { text: '前端工具熟练度' },
+                visualMap: {
+                    show: false,
+                    min: 80,
+                    max: 600,
+                    inRange: {
+                        colorLightness: [0, 1]
+                    }
+                },
                 series : [{
-                    name: '访问来源',
                     type: 'pie',
-                    radius: '55%',
+                    radius: '60%',
                     data:[
-                        {value:500, name:'webpack'},
-                        {value:274, name:'npm'},
-                        {value:310, name:'gulp'},
-                        {value:335, name:'git'},
-                        {value:40, name:'ps'}
-                ]}
-                ]
+                        {value:350, name:'webpack'},
+                        {value:310, name:'npm'},
+                        {value:274, name:'git'},
+                        {value:200, name:'ps'},
+                        {value:200, name:'其他'},
+                        
+                    ],
+                    roseType: 'angle',
+                }]
             })
         }
     },

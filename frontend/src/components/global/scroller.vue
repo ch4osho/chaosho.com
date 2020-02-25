@@ -11,7 +11,7 @@
         data: function () {
             return {
                 scrollTop: 0,
-                noDataText: '没有更多数据了 ლ(´•д• ̀ლ',
+                noDataText: '到我的底线了(ಥ﹏ಥ)',
                 textColor: '#969696'
             }
         },

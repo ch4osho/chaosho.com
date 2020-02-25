@@ -155,6 +155,5 @@ export default {
         top: 2.15rem;
         background: #ededed;
         height: calc(100% - 2.15rem);
-        z-index: 5;
     }
 </style>

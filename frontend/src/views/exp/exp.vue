@@ -2,9 +2,9 @@
   <section id="exp" class="full-section">
     <my-scroller :refresh="getIndexInfo" @scroll="onScroll" :infinite="infinite" ref="sroller">
       <div class="contanier">
-        <div class="card">
+        <!-- <div class="card">
           <p class="title">工作经历</p>
-        </div>
+        </div> -->
         <div class="card">
           <div class="company" v-for="company in expCompany" :key="company.companyName">
             <div class="exp-title">
@@ -40,7 +40,7 @@
         <span>Top</span>
       </div>
     <transition name="fade" v-if="showProject">
-      <popup :showClose="true" @close="close">
+      <popup :showClose="true" @close="close" :isIframe="true">
         <iframe :src="currentIframeUrl"></iframe>
       </popup>
     </transition>
