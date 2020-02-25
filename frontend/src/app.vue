@@ -43,7 +43,7 @@ export default {
         return {
             password: '',
             warm: '猜一下',
-            passwordRight: false,
+            passwordRight: true,
             routerList: [{
                 name: 'index',
                 label: '我'
