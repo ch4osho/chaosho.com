@@ -49,7 +49,7 @@ export default {
         height: 100vh;
         background: rgba(0, 0, 0, .8);
         position: absolute;
-        top: -50px;
+        top: 0;
         left: 0;
         z-index: 100;
 
