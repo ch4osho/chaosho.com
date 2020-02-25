@@ -1,5 +1,5 @@
 <template>
-    <section id="popup" class="mask">
+    <section id="popup" class="mask" @click="close">
         <div class="popup" v-if="!isIframe">
             <header class="header">
                 <slot name="header"></slot>
