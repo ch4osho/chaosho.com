@@ -118,7 +118,7 @@ export default {
 <style lang="scss" src="./sass/base.scss"></style>
 <style lang="scss">
     .nav{
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
         .bar{
@@ -149,7 +149,7 @@ export default {
 
     .view{
         // overflow: hidden;
-        position: absolute;
+        position: fixed;
         width: 100%;
         left: 0;
         top: 2.15rem;
