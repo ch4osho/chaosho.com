@@ -19,13 +19,17 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// 添加静态文件地址
 app.use(express.static(path.join(__dirname, 'public')));
+
+// 自定义静态文件地址
 app.use('/static',express.static(path.join(__dirname, 'public'),{
   maxAge: 600000,
-  // etag: false
 }))
 
 
+// 路由分发
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 

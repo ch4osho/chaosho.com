@@ -22,7 +22,8 @@
 
 
         <!-- 输入密码框 -->
-        <popup v-if="!passwordRight">
+        <transition name="fade">
+            <popup v-if="!passwordRight">
             <template #header>
                 <span>确认身份</span>
             </template>
@@ -31,17 +32,7 @@
                 {{warm}}
             </template>
         </popup>
-
-        <!-- 二维码框 -->
-        <popup v-if="showQrcode" :showClose="true" @close="closeQrcode">
-            <template #header>
-                <span>交个朋友，微信识别二维码吧(*^▽^*)</span>
-            </template>
-            <img :src="qrcodeUrl" alt="">
-            <template #footer>
-                <a href="weixin://">拉起微信</a>
-            </template>
-        </popup>
+        </transition>
     </div>
 </template>
 
@@ -52,8 +43,7 @@ export default {
         return {
             password: '',
             warm: '猜一下',
-            passwordRight: true,
-            qrcodeUrl: 'http://chaosho.com/static/images/qrcode.png',
+            passwordRight: false,
             routerList: [{
                 name: 'index',
                 label: '我'
@@ -84,11 +74,6 @@ export default {
             }
         }
     },
-    computed: {
-        showQrcode(){
-            return this.$store.getters.showQrcode
-        }
-    },
     mounted(){
         console.log('这是showQrCode',this.showQrcode)
     },
@@ -105,11 +90,9 @@ export default {
             this.passwordRight = true
         },
         touchstart(e){
-            console.log('touchstart',e)
             this.touchStartPoint = e.changedTouches[0]
         },
         touchend(e){
-            console.log('touchend',e)
             this.touchEndPoint = e.changedTouches[0]
             if(Math.abs(this.touchEndPoint.screenX - this.touchStartPoint.screenX)  > 10 && Math.abs(this.touchEndPoint.screenY - this.touchStartPoint.screenY) < 20){
                 this.switchRouter(this.touchEndPoint.screenX - this.touchStartPoint.screenX,this.$route.meta.index)
@@ -135,11 +118,9 @@ export default {
 <style lang="scss" src="./sass/base.scss"></style>
 <style lang="scss">
     .nav{
-        position: fixed;
+        position: absolute;
         top: 0;
         left: 0;
-        background: white;
-        z-index: 10;
         .bar{
             width: 100vw;
             height: 2rem;
@@ -167,13 +148,13 @@ export default {
     }
 
     .view{
-        overflow: hidden;
-        position: fixed;
+        // overflow: hidden;
+        position: absolute;
         width: 100%;
-        // margin-top: 2.15rem;
         left: 0;
         top: 2.15rem;
         background: #ededed;
         height: calc(100% - 2.15rem);
+        z-index: 5;
     }
 </style>

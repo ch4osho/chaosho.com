@@ -1,9 +1,9 @@
 <template>
   <section id="game" class="full-section">
-    <my-scroller :refresh="getIndexInfo">
+    <my-scroller :refresh="getIndexInfo" ref="sroller">
       <div class="contanier">
-        <div class="card flex">
-          <div class="qrcode" @click="showQrcode"></div>
+        <div class="card flex" ref="card">
+          <div class="qrcode" @click="switchQrcode"></div>
           <div class="avator">
             <img :src="personInfo.avatorUrl" alt="">
           </div>
@@ -15,7 +15,7 @@
               </div>
             </div>
             <div class="less-des">{{personInfo.workYears}}年工作经验 / {{personInfo.level}} / {{personInfo.years}}岁</div>
-            <div class="moreInfo" v-if="showDetail">
+              <div class="moreInfo" v-if="showDetail">
               <div class="item">
                 <span class="label">毕业院校：</span><span>{{personInfo.schools}}</span><span class="smaller"> (2019届)</span>
               </div>
@@ -37,7 +37,7 @@
               <div class="tagBox">
                 <div class="tag" v-for="tag in personInfo.tagsList" :key="tag.label" :style="{color:tag.color, border: `1px solid ${tag.color}`}">{{tag.label}}</div>
               </div>
-            </div>
+            </div>              
             <div class="animation" @click="showMore">
               <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="10px" width="14px" v-show="!showDetail">
                 <path d="M2 0 L7 5 L12 0" style="fill:white;stroke:red;stroke-width:2"></path>
@@ -58,23 +58,41 @@
       </div>
       <icp-footer></icp-footer>
     </my-scroller>
+    <!-- 二维码框 -->
+    <transition name="fade">
+      <popup v-if="showQrcode" :showClose="true" @close="closeQrcode">
+            <template #header>
+                <span>交个朋友，微信识别二维码吧(*^▽^*)</span>
+            </template>
+            <img :src="url" alt="">
+            <template #footer>
+                <a href="weixin://">拉起微信</a>
+            </template>
+        </popup>
+    </transition>
+
+  <div class="goTop" @click="goTop">
+    <span>Top</span>
+  </div>
   </section>
 </template>
 
 <script>
 import MyScroller from '@components/global/scroller.vue'
+import Popup from '@components/global/popup.vue'
 import Skill from './skill.vue'
 import IcpFooter from './IpcFooter.vue'
 export default {
-  data: function(){
-    return {
-      number: 0,
-    }
-  },
   components: {
     MyScroller,
     Skill,
     IcpFooter,
+    Popup
+  },
+  computed: {
+    showQrcode(){
+      return this.$store.getters.showQrcode
+    }
   },
   methods:{
     getIndexInfo(e){
@@ -85,9 +103,14 @@ export default {
       this.showName = !this.showName
     },
     showMore(){
+      if(this.showDetail){
+        this.$refs.card.style.height = '6rem';
+      } else {
+        this.$refs.card.style.height = '20rem';
+      }
       this.showDetail = !this.showDetail
     },
-    showQrcode(){
+    switchQrcode(){
       this.$store.dispatch('switchQrcode', true)
     },
     rgb(){
@@ -96,7 +119,13 @@ export default {
 			var b = Math.floor(Math.random()*256);
 			var rgb = 'rgb('+r+','+g+','+b+')';
 			return rgb;
-		}
+    },
+    closeQrcode(){
+      this.$store.dispatch('switchQrcode', false)
+    },
+    goTop(){
+      this.$refs.sroller.scrollTo(0,true)
+    }
   },
   created(){
     const that = this
@@ -106,7 +135,6 @@ export default {
       obj.color = that.rgb()
       return obj
     })
-    console.log(this.personInfo.tagsList)
   },
   updated(){
     console.log('进去了updated')
@@ -115,6 +143,7 @@ export default {
     return {
       showName: true,
       showDetail: false,
+      url: 'http://chaosho.com/static/images/qrcode.png',
       personInfo: {
         name: '何超豪',
         englishName: 'chaos',

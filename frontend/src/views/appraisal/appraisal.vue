@@ -3,12 +3,7 @@
     <my-scroller :infinite="infinite">
       <div class="contanier">
         <div class="card">
-          <p class="title">自我评价</p>
-        </div>
-        <div class="card">
-          <ul id="noDelegation">
-            <li v-for="item in 50" :key="item" @click="noDelegation(item)">{{item}}:{{Math.random() * 100}}</li>
-          </ul>
+          <p class="title">暂未开发</p>
         </div>
       </div>
     </my-scroller>
@@ -17,12 +12,9 @@
 
 <script>
 import MyScroller from '@components/global/scroller.vue'
-import Mock from 'mockjs'
 export default {
   data: function(){
     return {
-      number: 0,
-      cp: 'cp'
     }
   },
   components: {
@@ -46,18 +38,7 @@ export default {
     }
   },
   created(){
-  },
-
-  mounted(){
-    var data = Mock.mock({
-      'list|4': [{
-        'id|+1': 1,
-        name: Mock.Random.cname()
-      }]
-    })
-
-    console.log(data)
-  },
+  }
 }
 </script>
 <style lang="scss" src="./appraisal.scss" scoped></style>

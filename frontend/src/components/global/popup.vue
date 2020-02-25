@@ -48,10 +48,10 @@ export default {
         width: 100vw;
         height: 100vh;
         background: rgba(0, 0, 0, .8);
-        position: fixed;
-        top: 0;
+        position: absolute;
+        top: -50px;
         left: 0;
-        z-index: 11;
+        z-index: 100;
 
         .popup{
             position: absolute;
