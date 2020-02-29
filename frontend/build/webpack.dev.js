@@ -14,8 +14,8 @@ module.exports = function(env){
         // devtool: 'cheap-module-source-map'
          devServer: {
             contentBase: resolve("dist"),
-            // host: "0.0.0.0",
-            host: "192.168.1.103",
+            host: "0.0.0.0",
+            // host: "192.168.1.103",
             useLocalIp: true,
             open: true,
             hot: true,

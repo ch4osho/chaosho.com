@@ -57,23 +57,24 @@ export default {
       currentIframeUrl: null,
       showProject: false,
       expCompany: [
+        // {
+        //   companyName: '广州凡科互联网科技股份有限公司',
+        //   year: '2019-2020',
+        //   position: '开发工程师',
+        //   apartment: '数媒研发部',
+        //   picUrl: require('./../../sass/faisco.jpeg'),
+        //   projectExp: [
+        //     {
+        //       projectName: '凡科快图',
+        //       time: 12,
+        //       projectUrl: 'kt.fkw.com',
+        //       projectDes: '主要负责的是凡科快图的编辑态的开发，一个简单好用的在线作图工具，用户可以快速上传素材、图片进行加工，添加自定	义艺术字，预览编辑的图片，实时查看编辑图片的缩略图等，项目难点在于canvas和svg的运用，封装各种类，通过拖拽	操作，进行图片编辑，并支持撤销重做，即保存每一步用户的操作历史；最后把操作区域中的canvas和svg元素转化为	base64进行预览或者保存；'
+        //     }
+        //   ]
+        // }
         {
-          companyName: '广州凡科互联网科技股份有限公司',
-          year: '2019-2020',
-          position: '开发工程师',
-          apartment: '数媒研发部',
-          picUrl: require('./../../sass/faisco.jpeg'),
-          projectExp: [
-            {
-              projectName: '凡科快图',
-              time: 12,
-              projectUrl: 'kt.fkw.com',
-              projectDes: '主要负责的是凡科快图的编辑态的开发，一个简单好用的在线作图工具，用户可以快速上传素材、图片进行加工，添加自定	义艺术字，预览编辑的图片，实时查看编辑图片的缩略图等，项目难点在于canvas和svg的运用，封装各种类，通过拖拽	操作，进行图片编辑，并支持撤销重做，即保存每一步用户的操作历史；最后把操作区域中的canvas和svg元素转化为	base64进行预览或者保存；'
-            }
-          ]
-        },{
           companyName: '广州星辉娱乐有限公司',
-          year: '2018-2019',
+          year: '2018-2020',
           position: 'web前端开发工程师',
           apartment: '技术中心',
           picUrl: require('./../../sass/rastar.jpeg'),
@@ -88,7 +89,7 @@ export default {
               projectName: '海外星河游戏PC端主站',
               time: 8,
               projectUrl: 'www.etolies.com',
-              projectDes: '海外PC主站（www.etolies.com）面向海外的星辉游戏门户网站，采用jquery + larvel + vue.js + elementUi为技术栈，由于是海外主站，所以用到vue-i18n切换网站的简繁中文和英文，考虑到SEO的问题，采用了jquery作为基础框架，基于一些已有的接口和设计上，客服系统是采取larvel + vue.js实现的，其中涉及到larvel中的vue组件开发和打包技术。玩家用户可以在客服系统中提单，和查询各个游戏的常见问题和解决方案。'
+              projectDes: 'mac'
             },
             {
               projectName: '星辉游戏管理后台',
