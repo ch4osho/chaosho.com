@@ -14,7 +14,9 @@
                 <div class="time-left"></div>
                 <div class="time-right">
                   <div class="company-right">
-                    <img :src="company.picUrl" alt="">
+                    <div class="company-pic">
+                      <img :src="company.picUrl" alt="">
+                    </div>
                     <div class="company-right-des">
                       <p class="company-name">{{company.companyName}}</p>
                       <p><span>{{company.apartment}}</span>&nbsp;<span>{{company.position}}</span></p>
