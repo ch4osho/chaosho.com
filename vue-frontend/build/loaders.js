@@ -65,7 +65,7 @@ const fileLoader = {
     options: {
         limit: 10000,
         outputPath: '/images',
-        publicPath: 'http://chaosho.com/static/vue-app/images'
+        publicPath: 'http://chaosho.com/static/vue/images'
     }
 }
 
