@@ -1,8 +1,8 @@
 const path = require('path')
 const fs = require('fs')
 
-const publicPath = "public/Vue-app"
-const tplPath = "public/Vue-app/app.html"
+const publicPath = "public/vue-app"
+const tplPath = "public/vue-app/app.html"
 
 const resolve = (p) => path.resolve(__dirname, "..", p)
 const resolveToPublic = (p) => path.resolve(__dirname, "../..", p)
