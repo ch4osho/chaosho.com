@@ -64,7 +64,7 @@
             <template #header>
                 <span>交个朋友，微信识别二维码吧(*^▽^*)</span>
             </template>
-            <img :src="url" alt="">
+            <img :src="require('./../../static/img/qrcode.jpeg')" alt="">
             <template #footer>
                 <a href="weixin://">拉起微信</a>
             </template>

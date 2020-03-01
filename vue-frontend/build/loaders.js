@@ -64,15 +64,20 @@ const fileLoader = {
     loader: 'url-loader',
     options: {
         limit: 10000,
-        outputPath: '/images',
-        publicPath: 'http://chaosho.com/static/vue/images'
     }
+}
+
+// 生产环境的处理
+function prodHandle(){
+    sassLoader.use.unshift(MiniCssExtraPlugin.loader)
+    fileLoader.options.outputPath = '/images',
+    fileLoader.options.publicPath = 'http://chaosho.com/static/vue/images'
 }
 
 const initLoader = function (env) {
     const loaders = []
 
-    env === 'dev' ? sassLoader.use.unshift('style-loader') : sassLoader.use.unshift(MiniCssExtraPlugin.loader)
+    env === 'dev' ? sassLoader.use.unshift('style-loader') : prodHandle()
 
     loaders.push(sassLoader,jsLoader,fileLoader,vueLoader)
 
