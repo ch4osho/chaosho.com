@@ -52,6 +52,8 @@
                 width: 5rem;
                 height: 1.4rem;
                 overflow: hidden;
+                animation: bounce .75s ease-in-out 2;
+                color: #c23531;
 
                 .name-content{
                     display: flex;
