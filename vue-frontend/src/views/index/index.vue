@@ -5,7 +5,7 @@
         <div class="card flex" ref="card">
           <div class="qrcode" @click="switchQrcode"></div>
           <div class="avator">
-            <img :src="personInfo.avatorUrl" alt="">
+            <img :src="require('./../../static/img/cat.jpeg')" alt="">
           </div>
           <div class="des">
             <div class="name-container">
@@ -143,7 +143,6 @@ export default {
     return {
       showName: true,
       showDetail: false,
-      url: 'http://chaosho.com/static/images/qrcode.png',
       personInfo: {
         name: '何超豪',
         englishName: 'chaos',

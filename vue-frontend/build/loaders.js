@@ -2,16 +2,16 @@
 const MiniCssExtraPlugin = require('mini-css-extract-plugin')
 const { resolve } = require('./bundle')
 
-const cssLoader = {
-    test: /\.css$/,
-    exclude: /node_modules/,
-    use: [
-        MiniCssExtraPlugin.loader,
-        'style-loader',
-        'css-loader',
-        // 'postcss-loader'
-    ],
-}
+// const cssLoader = {
+//     test: /\.css$/,
+//     exclude: /node_modules/,
+//     use: [
+//         MiniCssExtraPlugin.loader,
+//         'style-loader',
+//         'css-loader',
+//         // 'postcss-loader'
+//     ],
+// }
 
 const sassLoader = {
     test: /\.(sa|sc|c)ss$/,
@@ -63,7 +63,9 @@ const fileLoader = {
     test: /\.(png|svg|jpg|jpeg|gif)$/,
     loader: 'url-loader',
     options: {
-        limit: 10000
+        limit: 10000,
+        outputPath: '/images',
+        publicPath: 'http://chaosho.com/static'
     }
 }
 
@@ -71,8 +73,6 @@ const initLoader = function (env) {
     const loaders = []
 
     env === 'dev' ? sassLoader.use.unshift('style-loader') : sassLoader.use.unshift(MiniCssExtraPlugin.loader)
-
-    // console.
 
     loaders.push(sassLoader,jsLoader,fileLoader,vueLoader)
 

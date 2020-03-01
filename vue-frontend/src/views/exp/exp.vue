@@ -77,7 +77,7 @@ export default {
           year: '2018-2020',
           position: 'web前端开发工程师',
           apartment: '技术中心',
-          picUrl: require('./../../sass/rastar.jpeg'),
+          picUrl: require('./../../static/img/rastar.jpeg'),
           projectExp: [
             {
               projectName: '星辉游戏移动端主站开发（国内，海外）',
