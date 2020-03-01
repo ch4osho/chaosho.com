@@ -91,7 +91,7 @@ export default {
               projectName: '海外星河游戏PC端主站',
               time: 8,
               projectUrl: 'www.etolies.com',
-              projectDes: 'mac'
+              projectDes: '海外PC主站（www.etolies.com）面向海外的星辉游戏门户网站，采用jquery + larvel + vue.js + elementUi为技术栈，由于是海外主站，所以用到vue-i18n切换网站的简繁中文和英文，考虑到SEO的问题，采用了jquery作为基础框架，基于一些已有的接口和设计上，客服系统是采取larvel + vue.js实现的，其中涉及到larvel中的vue组件开发和打包技术。玩家用户可以在客服系统中提单，和查询各个游戏的常见问题和解决方案。'
             },
             {
               projectName: '星辉游戏管理后台',
