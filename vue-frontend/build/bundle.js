@@ -42,9 +42,11 @@ function resolveEntryAndOutput(env) {
 
     env === 'dev' ? output.path = resolve('dist') : output.path = resolveToPublic(publicPath)
 
-    entry = resolve('src/main.js'),
+    entry = {
+        index: resolve('src/main.js')
+    },
 
-    output.filename = "index.js"
+    output.filename = "[name].js"
     
 
 }

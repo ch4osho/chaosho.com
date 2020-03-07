@@ -83,6 +83,7 @@ import Popup from '@components/global/popup.vue'
 import Skill from './skill.vue'
 import IcpFooter from './IpcFooter.vue'
 export default {
+  name: 'index',
   components: {
     MyScroller,
     Skill,

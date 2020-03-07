@@ -54,6 +54,7 @@
 import MyScroller from '@components/global/scroller.vue'
 import Popup from '@components/global/popup.vue'
 export default {
+  name: 'exp',
   data: function(){
     return {
       currentIframeUrl: null,

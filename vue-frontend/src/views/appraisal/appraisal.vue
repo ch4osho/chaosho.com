@@ -19,6 +19,7 @@
 <script>
 import MyScroller from '@components/global/scroller.vue'
 export default {
+  name: 'appraisal',
   data: function(){
     return {
             commentList: [

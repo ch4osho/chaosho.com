@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "build": "cross-env ENVIROMENT=prod webpack",
+    "build": "cross-env ENVIROMENT=prod webpack -p",
     "dev": "cross-env ENVIROMENT=dev webpack-dev-server"
   },
   "devDependencies": {
