@@ -5,22 +5,20 @@
         <div class="card">
           <p class="title">暂未开发</p>
         </div>
-        <div class="card">
-          <ul>
-            <li v-for="item in list" :key="item">
-            <input type="checkbox"> {{item}}
-            </li>
-          </ul>
-          <button @click="add">add</button>
-        </div>
-        <div class="card">
+        <add></add>
+        <!-- <div class="card">
           <input list="cars"/>
           <datalist id="cars">
             <option value="BMW"></option>
             <option value="Ford"></option>
             <option value="Volvo"></option>
           </datalist>
-        </div>
+        </div> -->
+        <!-- <div class="card">
+          <ul>
+            <li v-for="item in 100" :key="item">{{item}}:{{Math.random()}}</li>
+          </ul>
+        </div> -->
       </div>
     </my-scroller>
   </section>
@@ -28,6 +26,7 @@
 
 <script>
 import MyScroller from '@components/global/scroller.vue'
+import Add from "./add.vue"
 export default {
   name: 'more',
   data: function(){
@@ -36,7 +35,8 @@ export default {
     }
   },
   components: {
-    MyScroller
+    MyScroller,
+    Add
   },
   methods:{
     add(){

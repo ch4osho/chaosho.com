@@ -1,0 +1,23 @@
+@import './animation.scss';
+@import './reset.scss';
+@import './base.css';
+
+.toast {
+    position: fixed;
+    left: 50%;
+    bottom: 20%;
+    z-index: 999;
+    background: rgba(0, 0, 0, .7);
+    padding: .25rem;
+    line-height: .75rem;
+    border-radius: .25rem;
+    font-size: .3rem;
+    transform: translate(-50%, -50%);
+    color: white;
+    opacity: 0;
+    transition: opacity .2s linear;
+    &.active {
+      opacity: 1;
+      transition: opacity .2s linear;
+    }
+  }

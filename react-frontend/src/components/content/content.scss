@@ -1,0 +1,55 @@
+.content{
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    height: 600px;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    .lt, .rt, .lb, .rb{
+        position: absolute;
+        width: calc(50% - 2px);
+        height: 298px;
+        box-sizing: border-box;
+        // border: 1px dashed black;
+        overflow: auto
+    }
+
+    .lt{
+        left: 0;
+        top: 0
+    }
+
+    .rt{
+        right: 0;
+        top: 0
+    }
+
+    .lb{
+        left: 0;
+        bottom: 0;
+    }
+
+    .rb{
+        right: 0;
+        bottom: 0;
+    }
+    
+    .vertical{
+        height: 100%;
+        position: absolute;
+        width: 4px;
+        background: #ededed;
+        left: calc(50% - 2px);
+        top: 0
+    }
+
+    .horizon{
+        width: 100%;
+        position: absolute;
+        height: 4px;
+        background: #ededed;
+        left: 0;
+        top: calc(50% - 2px);
+    }
+}

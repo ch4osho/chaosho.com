@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // 自定义静态文件地址
 app.use('/static',express.static(path.join(__dirname, 'public'),{
-  maxAge: 600000,
+  // maxAge: 600000,
 }))
 
 
