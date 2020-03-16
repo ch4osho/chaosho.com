@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="input" oninput="myinput(this)">
+    <h1 id="h1"></h1>
+</body>
+
+<script>
+    let data = {
+        name: 'chaos'
+    }
+
+    function myinput(input){
+        data.name = input.value
+        // console.log(val.value)
+    }
+
+    // 自己实现的vue
+    class myVue{
+        // data为vue的data对象，el为双向绑定的对象，exp为双向绑定的属性值
+        constructor(data, el, exp){
+            this.data = data
+            el.innerText = data[exp];
+            document.getElementById('input').value = data[exp]
+            observer(data);
+            new Watch(this, exp, function(){
+                el.innerText = data[exp]
+                document.getElementById('input').value = data[exp]
+            })
+        }
+    }
+
+    // 每个属性的订阅队伍
+    class Dep{
+        subs = []
+
+        constructor(){
+            
+        }
+
+        addSub(watch){
+            this.subs.push(watch)
+        }
+
+        notify(newVal){
+            this.subs.forEach(watch=>{
+                watch.update(newVal)
+            })
+        }
+    }
+
+    // 观察对象属性
+    function observer(data){
+        if(!data|| typeof data !== 'object') return
+
+        Object.keys(data).forEach(key=>{
+            toReactive(data, key, data[key])
+        })
+    }
+
+    function toReactive(data, key, val){
+        observer(val)
+        var dep = new Dep();
+        Object.defineProperty(data, key, {
+            enumerable: true,
+            configurable: true,
+            get(){
+                if(Dep.target) {
+                    dep.addSub(Dep.target)
+                }
+                return val
+            },
+            set(newVal){
+                val = newVal
+                dep.notify(newVal)
+            }
+        })
+    }
+
+    // 
+    class Watch{
+        constructor(vm, exp, cb){
+            this.vm = vm
+            this.cb = cb
+            this.exp = exp
+            this.value = this.get()
+        }
+
+        // 强制触发data的get
+        get(){
+            Dep.target = this;
+            var value = this.vm.data[this.exp]
+            Dep.target = null
+            return value;
+        }
+
+        // 判断新值和旧值是否相等
+        run(newVal){
+            var newVal = this.vm.data[this.exp];
+
+            if(newVal !== this.value){
+                this.cb.call(this.vm)
+            }
+        }
+
+        update(newVal){
+            this.run(newVal)
+        }
+    }
+
+    new myVue(data, document.getElementById('h1'), 'name')
+
+
+</script>
+</html>
