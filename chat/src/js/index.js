@@ -4,7 +4,7 @@ var ws = new WebSocket("ws://chaosho.com:443");
         console.log('连接到聊天室啦~');
 }
         //显示消息
-function appendLog(type, nickname, message) {
+function appendLog(type, nickname, message, color) {
     if (typeof message == "undefined") return;
     var messages = document.getElementById('messages');
     var messageElem = document.createElement("li");
@@ -20,7 +20,7 @@ function appendLog(type, nickname, message) {
         preface_label = `<span class="label label-warning"><i class="glyphicon glyphicon-plus"></i></span>`;
         message_text = `<p>${preface_label}&nbsp;&nbsp;${message}</p>`
     } else {
-        preface_label = `<span class="label label-info">${nickname}:</span>`;
+        preface_label = `<span class="label label-info" style="background-color: ${color}">${nickname}:</span>`;
         message_text = `<p class="user_msg">${preface_label}&nbsp;&nbsp;${message}</p>`
     }
     messageElem.innerHTML = message_text;
@@ -31,7 +31,7 @@ function appendLog(type, nickname, message) {
 ws.onmessage = function (e) {
     var data = JSON.parse(e.data);
     nickname = data.nickname;
-    appendLog(data.type, data.nickname, data.message);
+    appendLog(data.type, data.nickname, data.message, data.color);
     console.log("ID: [%s] = %s", data.id, data.message);
     console.log('这是data',data)
 }

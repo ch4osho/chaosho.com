@@ -53,14 +53,15 @@ let clients = []
 
 let clientIndex = 0;
 
-function broadcastSend(type,msg,nickname){
+function broadcastSend(type,msg,nickname,color){
   clients.forEach(function(client,index){
       if(client.ws.readyState === ws.OPEN) {
           client.ws.send(JSON.stringify({
               'type': type,
               'nickname': nickname,
               'message': msg,
-              'visitedNum': clientIndex
+              'visitedNum': clientIndex,
+              color
           }))
       }
   })
@@ -69,10 +70,12 @@ function broadcastSend(type,msg,nickname){
 wss.on('connection',function(ws){
   let client_uuid = uuid.v4();
   let nickname = `陌生人${clientIndex++}`;
+  let color = rgb();
   clients.push({
       "id": client_uuid,
       "ws": ws,
-      "nickname": nickname
+      "nickname": nickname,
+      "color": color
   })
 
   broadcastSend("join", '加入聊天室', nickname);
@@ -102,7 +105,7 @@ wss.on('connection',function(ws){
               broadcastSend("nick_update", nickname_message, nickname);
           }
       } else {
-          broadcastSend("message", message, nickname);
+          broadcastSend("message", message, nickname, color);
       }
   })
 
@@ -110,6 +113,14 @@ wss.on('connection',function(ws){
       closeSocket();
   })
 })
+
+function rgb(){
+    var r = Math.floor(Math.random()*256);
+    var g = Math.floor(Math.random()*256);
+    var b = Math.floor(Math.random()*256);
+    var rgb = 'rgb('+r+','+g+','+b+')';
+    return rgb;
+}
 
 // websokect结束
 
