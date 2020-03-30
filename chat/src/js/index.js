@@ -55,4 +55,5 @@ function changName() {
     if (ws.readyState === WebSocket.OPEN) {
         ws.send("/nick " + name);
     }
+    name.val('')
 }

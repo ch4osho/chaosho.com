@@ -10,14 +10,34 @@ body {
   position: relative;
   overflow: hidden;
   height: 100%;
-  margin: 0 auto; }
+  margin: 0 auto;
+  background: grey; }
 
 h1, h2, h3, h4, h6 {
   margin-top: 10px; }
 
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px; }
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: white;
+  border-radius: 8px; }
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #c9c9ca;
+  border-radius: 8px; }
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #a2a2a3; }
+
 @media screen and (max-width: 600px) {
   .wrap {
-    background-color: 0;
+    background: whitesmoke;
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -26,20 +46,23 @@ h1, h2, h3, h4, h6 {
 
 @media screen and (min-width: 600px) {
   .wrap {
-    background-color: 0;
-    width: 600px;
-    height: 1000px;
+    background: whitesmoke;
+    width: 375px;
+    height: 667px;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); } }
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+    border-radius: 10px; } }
 
 .chaos-center-div {
-  height: 100px;
+  height: 50px;
   display: flex;
   position: relative;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  font-size: 20px; }
 
 p {
   color: orange;
@@ -52,7 +75,8 @@ p {
 .list-unstyled {
   height: calc(100% - 50px);
   width: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   background: #ededed; }
 
 .chaos-container {
@@ -66,21 +90,31 @@ hr {
   margin-top: 0;
   margin-bottom: 5px; }
 
-.chaos-buttom {
-  padding: 5px 10px; }
-  .chaos-buttom .chaos_form {
-    position: fixed;
-    bottom: 5px;
-    width: 100%; }
-    .chaos-buttom .chaos_form .chaos-row {
+.chat-input-group {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 8px; }
+  .chat-input-group .chat-input {
+    flex: 1;
+    height: 30px;
+    position: relative; }
+    .chat-input-group .chat-input .input {
       width: 100%;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      position: relative; }
-      .chaos-buttom .chaos_form .chaos-row .chaos-input {
-        width: calc(100% - 85px); }
-      .chaos-buttom .chaos_form .chaos-row .chaos-submit-btn {
-        margin-left: 10px;
-        float: right;
-        min-width: 50px; }
+      border-radius: 5px;
+      padding: 5px 10px; }
+    .chat-input-group .chat-input .input[type=text]:focus {
+      outline: 1px solid orange; }
+  .chat-input-group .chat-emoji {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px; }
+  .chat-input-group .chat-btn {
+    width: 50px;
+    height: 30px;
+    margin-left: 10px;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 5px;
+    color: white;
+    background-color: orange; }
