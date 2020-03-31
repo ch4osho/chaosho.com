@@ -21,7 +21,7 @@
             <hr/>
             <div class="chat-input-group">
                 <div class="chat-input">
-                    <input type="text" class="input" id="nickname" autocomplete="off" placeholder="更改昵称"/>
+                    <input type="text" class="input" id="name" autocomplete="off" placeholder="更改昵称" onclick="changName()"/>
                 </div>
                 <div class="chat-btn">
                     更改
@@ -32,7 +32,8 @@
                     <input type="text" class="input" id="message" autocomplete="off" placeholder="输入文字"/>
                 </div>
                 <div class="chat-emoji">
-                    <object data="./css/emoji.svg" width="30" height="30" type="image/svg+xml" codebase="http://www.adobe.com/svg/viewer/imstall/">
+                    <!-- <object data="./css/emoji.svg" width="30" height="30" type="image/svg+xml" codebase="http://www.adobe.com/svg/viewer/imstall/"></object> -->
+                    <embed src="./css/emoji.svg" type="image/svg+xml" width="30" height="30" color="orange"/>
                 </div>
                 <div class="chat-btn">
                     发送
