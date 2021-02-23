@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://player.polyv.net/livesdk/polyv-live.min.js"></script>
+</head>
+<body>
+    <div id="ppt" style="width:500px;height:300px;"></div>
+    <div id="player" style="width:500px;height:300px;"></div>
+</body>
+<script>
+
+    var liveSdk = new PolyvLiveSdk({
+        channelId: 1168891,
+        sign: '42751ded81094cfcabdce5e1ce32e37a', // 频道验证签名
+        timestamp: new Date().getTime() * 1000, // 毫秒级时间戳
+        appId: 'fgaw6d0l04', // polyv 后台的appId
+        user: {
+            userId: '0ce69317f4',
+            userName: 'polyv-test',
+            pic: '//livestatic.videocc.net/assets/wimages/missing_face.png'
+        }
+    });
+
+    // 监听频道信息并初始化播放器
+    liveSdk.on(PolyvLiveSdk.EVENTS.CHANNEL_DATA_INIT, (event, data) => {
+        liveSdk.setupPlayer({
+            pptEl: '#ppt',
+            el: '#player',
+            type: 'auto'
+        });
+    });  
+</script>
+</html>

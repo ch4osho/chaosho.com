@@ -1,10 +1,6 @@
 <template>
   <section id="game" class="full-section">
-    <my-scroller
-      :refresh="getIndexInfo"
-      ref="sroller"
-      :refreshText="refreshText"
-    >
+    <my-scroller :refresh="getIndexInfo" ref="sroller">
       <div class="contanier" v-if="false">
         <div class="card flex" ref="card">
           <div class="qrcode" @click="switchQrcode"></div>
@@ -110,27 +106,18 @@
         <skill></skill>
       </div>
       <div class="contanier">
-        <div
-          class="fund-card"
-          v-for="item in fundData"
-          :key="item.FCODE"
-          :class="item.GSZZL > 0 ? '' : ''"
-        >
-          <div class="fund-trend">
-            {{ item.GSZZL > 0 ? `+${item.GSZZL}` : item.GSZZL }}
-          </div>
+        <div class="fund-card" v-for="item in fundData" :key="item.FCODE">
           <div class="fund-name">
             {{ item.SHORTNAME }}
           </div>
-          <div class="fund-current-value">
-            {{ item.NAV }}
-          </div>
+          <div class=""></div>
+          {{ item.GSZZL }} {{ item.GZTIME }} {{ item.NAV }}
         </div>
       </div>
       <icp-footer></icp-footer>
     </my-scroller>
     <!-- 二维码框 -->
-    <!-- <transition name="fade">
+    <transition name="fade">
       <popup v-if="showQrcode" :showClose="true" @close="closeQrcode">
         <template #header>
           <span>交个朋友，微信识别二维码吧(*^▽^*)</span>
@@ -140,7 +127,7 @@
           <a href="weixin://">拉起微信</a>
         </template>
       </popup>
-    </transition> -->
+    </transition>
 
     <div class="goTop" @click="goTop">
       <span>Top</span>
@@ -153,7 +140,6 @@ import MyScroller from "@components/global/scroller.vue";
 import Popup from "@components/global/popup.vue";
 import Skill from "./skill.vue";
 import IcpFooter from "./IpcFooter.vue";
-import md5 from "js-md5";
 export default {
   name: "index",
   components: {
@@ -199,9 +185,6 @@ export default {
       this.$refs.sroller.scrollTo(0, true);
     },
     getFundListData(e) {
-      this.refreshText =
-        `上一次更新时间：` +
-        this.$utils.formatDate("yyyy-MM-dd hh:mm:ss", new Date());
       this.$axios
         .get(this.$api.fundListData, {
           params: {
@@ -216,9 +199,6 @@ export default {
           },
         })
         .then((res) => {
-          res.data.Datas.sort((a, b) => {
-            return b.GSZZL - a.GSZZL;
-          });
           this.$set(this, "fundData", res.data.Datas);
           // this.fundData = res.data.Datas;
           console.log(res);
@@ -230,28 +210,6 @@ export default {
           e && e();
         });
     },
-    getDataBaseFundList() {
-      this.$axios
-        .get(this.$api.getDatabaseFundList, {
-          params: {
-            optCode: md5("chaos_all_fund"),
-          },
-        })
-        .then((res) => {
-          console.log(res);
-          this.$set(
-            this,
-            "fundCodeList",
-            res.data.data.data.map((item) => {
-              return item.fund_code;
-            })
-          );
-          this.getFundListData();
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
   },
   created() {
     const that = this;
@@ -261,7 +219,9 @@ export default {
       obj.color = that.rgb();
       return obj;
     });
-    this.getDataBaseFundList();
+    console.log(this.$api);
+
+    this.getFundListData();
   },
   updated() {
     console.log("进去了updated");
@@ -270,8 +230,31 @@ export default {
     return {
       showName: true,
       showDetail: false,
-      refreshText: "",
-      fundCodeList: [],
+      fundCodeList: [
+        "519674",
+        "001595",
+        "519005",
+        "008888",
+        "519736",
+        "009570",
+        "009010",
+        "519002",
+        "160222",
+        "161725",
+        "003834",
+        "005939",
+        "005827",
+        "000945",
+        "003095",
+        "501207",
+        "501208",
+        "501206",
+        "501205",
+        "320007",
+        "001071",
+        "004496",
+        "003304",
+      ],
       fundData: [],
       personInfo: {
         name: "何超豪",

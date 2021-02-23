@@ -154,32 +154,9 @@
     margin: 10px 10px 10px;
     border-radius: 5px;
     border: 1px solid #ededed;
-    padding: 10px;
-    background: #ff9900;
-    height: 30px;
-    display: flex;
-    color: white;
-    justify-content: center;
-    align-items: center;
-
-    &.red {
-      //   background: #ed556a;
-      background: red;
-    }
-
-    &.green {
-      //   background: #248067;
-      background: #28a745;
-    }
-
-    .fund-trend {
-      width: 60px;
-    }
-
-    .fund-name {
-      flex: 1;
-      font-size: 14px;
-    }
+    padding: 5px;
+    background: white;
+    height: 50px;
   }
 }
 
