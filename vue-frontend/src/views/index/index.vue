@@ -110,7 +110,7 @@
         <skill></skill>
       </div>
       <div class="contanier">
-        <div
+        <!-- <div
           class="fund-card"
           v-for="item in fundData"
           :key="item.FCODE"
@@ -124,6 +124,11 @@
           </div>
           <div class="fund-current-value">
             {{ item.NAV }}
+          </div>
+        </div> -->
+        <div class="fund-card">
+          <div class="add-fund" @click="showAddFundPopup = true">
+            添加基金
           </div>
         </div>
       </div>
@@ -145,6 +150,38 @@
     <div class="goTop" @click="goTop">
       <span>Top</span>
     </div>
+
+    <transition name="fade">
+      <popup v-if="showAddFundPopup" :showClose="true" @close="closeFundInput">
+        <template #header>
+          <span>输入基金代码</span>
+        </template>
+        <!-- <input type="text" v-model="addFundCode" /><button
+          @click="checkAndAddFund"
+        >
+          添加
+        </button> -->
+        <el-select
+          v-model="addFundCode"
+          filterable
+          remote
+          reserve-keyword
+          placeholder="请输入基金代码"
+          :remote-method="remoteMethod"
+          :loading="false"
+          size="small"
+        >
+          <el-option
+            v-for="item in suggestFundList"
+            :key="item.CODE"
+            :label="`[${item.CODE}]${item.NAME}`"
+            :value="item.CODE"
+          >
+          </el-option>
+        </el-select>
+        <el-button @click="submit" size="small">确定添加</el-button>
+      </popup>
+    </transition>
   </section>
 </template>
 
@@ -168,6 +205,53 @@ export default {
     },
   },
   methods: {
+    async remoteMethod(query) {
+      let that = this;
+      function fundCallBack(res) {
+        that.suggestFundList = res.Datas;
+      }
+      if (query != "") {
+        this.$axios
+          .get(this.$api.fundSuggest, {
+            params: {
+              callback: "fundCallBack",
+              m: 1,
+              key: query,
+              _: new Date().getTime(),
+            },
+          })
+          .then((res) => {
+            // this.suggestFundList = res.Datas;
+            // console.log("这是建议返回", res.data);
+            eval(`${res.data}`);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    },
+    submit() {
+      if (!this.addFundCode) {
+        return this.$toast("请选择基金");
+      }
+
+      this.$axios
+        .get(this.$api.addFundToDatabase, {
+          params: {
+            fund_code: this.addFundCode,
+            optCode: md5("chaos_add_fund"),
+          },
+        })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    getCallBack(res) {
+      console.log(res);
+    },
     getIndexInfo(e) {
       this.getFundListData(e);
     },
@@ -195,6 +279,10 @@ export default {
     closeQrcode() {
       this.$store.dispatch("switchQrcode", false);
     },
+    closeFundInput() {
+      console.log("进来了close了吗");
+      this.showAddFundPopup = false;
+    },
     goTop() {
       this.$refs.sroller.scrollTo(0, true);
     },
@@ -206,7 +294,7 @@ export default {
         .get(this.$api.fundListData, {
           params: {
             pageIndex: 1,
-            pageSize: 23,
+            pageSize: 100,
             appType: "ttjj",
             product: "EFund",
             plat: "Android",
@@ -264,15 +352,18 @@ export default {
     this.getDataBaseFundList();
   },
   updated() {
-    console.log("进去了updated");
+    console.log("进去了updated", this.showAddFundPopup);
   },
   data: function() {
     return {
+      suggestFundList: [],
       showName: true,
       showDetail: false,
       refreshText: "",
       fundCodeList: [],
       fundData: [],
+      showAddFundPopup: false,
+      addFundCode: "",
       personInfo: {
         name: "何超豪",
         englishName: "chaos",

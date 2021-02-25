@@ -1,6 +1,6 @@
 // 提取css文件
-const MiniCssExtraPlugin = require('mini-css-extract-plugin')
-const { resolve } = require('./bundle')
+const MiniCssExtraPlugin = require("mini-css-extract-plugin");
+const { resolve } = require("./bundle");
 
 // const cssLoader = {
 //     test: /\.css$/,
@@ -14,74 +14,75 @@ const { resolve } = require('./bundle')
 // }
 
 const sassLoader = {
-    test: /\.(sa|sc|c)ss$/,
-    exclude: /node_modules/,
-    use: [
-        // MiniCssExtraPlugin.loader,
-        // 'style-loader',
-        'css-loader',
-        // 'postcss-loader',
-        'sass-loader',
-        // {
-        //     loader: 'sass-resources-loader',
-        //     options: {
-        //         resources: resolve('src/sass/base.scss')
-        //     }
-        // }
-    ]
-}
+  test: /\.(sa|sc|c)ss$/,
+  exclude: /node_modules/,
+  use: [
+    // MiniCssExtraPlugin.loader,
+    // 'style-loader',
+    "css-loader",
+    // 'postcss-loader',
+    "sass-loader",
+    // {
+    //     loader: 'sass-resources-loader',
+    //     options: {
+    //         resources: resolve('src/sass/base.scss')
+    //     }
+    // }
+  ],
+};
 
 const jsLoader = {
-    test: /\.js$/,
-    exclude: /node_modules/,
-    use: [
-        {
-            loader: 'babel-loader',
-            options: {
-                presets: [
-                    [
-                        'babel-preset-env',{
-                            targets: {
-                                browsers: ['> 1%', 'last 2 versions']
-                            }
-                        }
-                    ]
-                ]
-            }
-        }
-    ]
-}
+  test: /\.js$/,
+  exclude: /node_modules/,
+  use: [
+    {
+      loader: "babel-loader",
+      options: {
+        presets: [
+          [
+            "babel-preset-env",
+            {
+              targets: {
+                browsers: ["> 1%", "last 2 versions"],
+              },
+            },
+          ],
+        ],
+      },
+    },
+  ],
+};
 
 const vueLoader = {
-    test: /\.vue$/,
-    exclude: /node_modules/,
-    loader: 'vue-loader'
-}
+  test: /\.vue$/,
+  exclude: /node_modules/,
+  loader: "vue-loader",
+};
 
 const fileLoader = {
-    // 文字资源
-    test: /\.(png|svg|jpg|jpeg|gif)$/,
-    loader: 'url-loader',
-    options: {
-        limit: 10000,
-    }
-}
+  // 文字资源
+  test: /\.(png|svg|jpg|jpeg|gif|ttf|woff)$/,
+  loader: "url-loader",
+  options: {
+    limit: 10000,
+  },
+};
 
 // 生产环境的处理
-function prodHandle(){
-    sassLoader.use.unshift(MiniCssExtraPlugin.loader)
-    fileLoader.options.outputPath = '/images',
-    fileLoader.options.publicPath = 'http://chaosho.com/static/vue/images'
+function prodHandle() {
+  sassLoader.use.unshift(MiniCssExtraPlugin.loader);
+  (fileLoader.options.outputPath = "/images"),
+    (fileLoader.options.publicPath = "http://chaosho.com/static/vue/images");
 }
 
-const initLoader = function (env) {
-    const loaders = []
+const initLoader = function(env) {
+  const loaders = [];
 
-    env === 'dev' ? sassLoader.use.unshift('style-loader') : prodHandle()
+  env === "dev" ? sassLoader.use.unshift("style-loader") : prodHandle();
 
-    loaders.push(sassLoader,jsLoader,fileLoader,vueLoader)
+  loaders.push(sassLoader, jsLoader, fileLoader, vueLoader);
 
-    return loaders
-}
+  return loaders;
+};
 
-module.exports =  initLoader
+module.exports = initLoader;

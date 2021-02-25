@@ -1,6 +1,8 @@
 const md5 = require("js-md5");
 const mysqlConfig = require("../utils/mysqlConfig.js");
-var mysql = require("mysql");
+const mysql = require("mysql");
+const myResponse = require("../utils/response.js");
+const mqp = require("../utils/mysqlQueryPromise.js");
 
 var express = require("express");
 var router = express.Router();
@@ -14,13 +16,7 @@ router.get("/getAllFund", function (req, res, next) {
   console.log("这是请求get", req.query);
   const { fund_code, optCode } = req.query;
   if (optCode !== md5("chaos_all_fund")) {
-    res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(
-      JSON.stringify({
-        code: 500,
-        desc: "请求失败",
-      })
-    );
+    myResponse(res, 403, "鉴权失败");
   }
 
   var connection = mysql.createConnection(mysqlConfig);
@@ -31,56 +27,48 @@ router.get("/getAllFund", function (req, res, next) {
     if (error) {
       throw error;
     } else {
-      var data = {
-        data: {
-          msg: "获取基金列表成功",
-          data: results,
-        },
-        code: 200,
-      };
-      res.writeHead(200, { "Content-Type": "application/json" });
-      res.end(JSON.stringify(data));
+      myResponse(res, 200, "获取基金列表成功", results);
     }
   });
 
   connection.end();
 });
 
-router.get("/addFund", function (req, res, next) {
+router.get("/addFund", async function (req, res, next) {
   const { fund_code, optCode } = req.query;
 
   if (optCode !== md5("chaos_add_fund")) {
-    res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(
-      JSON.stringify({
-        code: 500,
-        desc: "请求失败",
-      })
-    );
+    myResponse(res, 403, "鉴权失败");
+    return;
   }
 
+  // 连接数据库
   var connection = mysql.createConnection(mysqlConfig);
-
   connection.connect();
 
-  connection.query(
-    `INSERT INTO fund (fund_name, fund_code, fund_desc) VALUES ('${"test"}','${fund_code}','${"test"}')`,
-    function (error, results, fields) {
-      if (error) {
-        throw error;
-      } else {
-        var data = {
-          data: {
-            msg: "新增基金成功",
-            fund_code,
-          },
-          code: 200,
-        };
-        res.writeHead(200, { "Content-Type": "application/json" });
-        res.end(JSON.stringify(data));
-      }
-    }
+  const sortRes = await mqp(
+    connection,
+    `SELECT COUNT(*) AS nums FROM fund WHERE fund_code = '${fund_code}'`
   );
+
+  if (!sortRes.success) {
+    connection.end();
+    myResponse(res, 201, "该基金已经添加");
+    return;
+  }
+
+  const queryRes = await mqp(
+    connection,
+    `INSERT INTO fund (fund_name, fund_code, fund_desc) VALUES ('${"test"}','${fund_code}','${"test"}')`
+  );
+
+  if (res.success) {
+    myResponse(res, 200, "添加基金成功", {
+      fund_code,
+    });
+  } else {
+    myResponse(res, 200, "添加基金失败", queryRes);
+  }
 
   connection.end();
 });

@@ -16,6 +16,7 @@ module.exports = function(env) {
           ROOT_FUND_API: '"/pingzhongdata"',
           ROOT_FUND_NEWS_API: '"/FundMNewApi"',
           ROOT_MY_API: '"/localhost"',
+          ROOT_SUGGEST_API: '"/fundsuggest"',
         },
       }),
     ],
@@ -49,6 +50,13 @@ module.exports = function(env) {
           changeOrigin: true,
           pathRewrite: {
             "^/localhost": "/",
+          },
+        },
+        "/fundsuggest": {
+          target: "http://fundsuggest.eastmoney.com",
+          changeOrigin: true,
+          pathRewrite: {
+            "^/fundsuggest": "/",
           },
         },
       },

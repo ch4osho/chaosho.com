@@ -20,6 +20,7 @@ module.exports = function(env) {
         ROOT_FUND_API: '"//fund.eastmoney.com/pingzhongdata"',
         ROOT_FUND_NEWS_API: '"//fundmobapi.eastmoney.com/FundMNewApi"',
         ROOT_MY_API: '"//chaosho.com"',
+        ROOT_SUGGEST_API: '"//fundsuggest.eastmoney.com"',
       },
     }),
   ];
